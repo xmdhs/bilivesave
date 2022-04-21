@@ -41,6 +41,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	defer db.Close()
 
 	for {
 		do(ctx, rd.RoomID, db)
