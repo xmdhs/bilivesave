@@ -31,13 +31,13 @@ type Hot struct {
 }
 
 type Gift struct {
-	GiftId    int64  `db:"gift_id" json:"gift_id"`
+	Id        int64  `db:"id" json:"id"`
 	Uname     string `db:"uname" json:"uname"`
 	Uid       int64  `db:"uid" json:"uid"`
 	Rnd       string `db:"rnd" json:"rnd"`
 	GiftName  string `db:"gift_name" json:"gift_name"`
 	GiftNum   int    `db:"gift_num" json:"gift_num"`
-	GiftType  int    `db:"gift_type" json:"gift_type"`
+	GiftID    int64  `db:"gift_id" json:"gift_id"`
 	Action    string `db:"action" json:"action"`
 	GiftPrice int    `db:"gift_price" json:"gift_price"`
 	Time      int64  `db:"time" json:"time"`

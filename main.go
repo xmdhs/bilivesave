@@ -156,7 +156,7 @@ func handle(ctx context.Context, msg live.Msg, db *sql.Db) {
 			GiftName:  g.GiftName,
 			GiftNum:   g.Num,
 			GiftPrice: g.Price,
-			GiftType:  g.GiftType,
+			GiftID:    g.GiftID,
 			Action:    g.Action,
 			Time:      g.Timestamp,
 			Num:       g.Num,
