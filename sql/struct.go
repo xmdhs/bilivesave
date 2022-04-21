@@ -37,6 +37,8 @@ type Gift struct {
 	Rnd       string `db:"rnd" json:"rnd"`
 	GiftName  string `db:"gift_name" json:"gift_name"`
 	GiftNum   int    `db:"gift_num" json:"gift_num"`
+	GiftType  int    `db:"gift_type" json:"gift_type"`
+	Action    string `db:"action" json:"action"`
 	GiftPrice int    `db:"gift_price" json:"gift_price"`
 	Time      int64  `db:"time" json:"time"`
 	Num       int    `db:"num" json:"num"`

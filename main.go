@@ -215,5 +215,8 @@ func handle(ctx context.Context, msg live.Msg, db *sql.Db) {
 	// General 表示live未实现的CMD命令，请自行处理raw数据。也可以提issue更新这个CMD
 	case *live.MsgGeneral:
 		logger.Println("unknown msg type|raw:", string(msg.Raw()))
+	default:
+		logger.Printf("not case msg type %v|raw: %v\n", msg.Cmd(), string(msg.Raw()))
 	}
+
 }
