@@ -17,7 +17,7 @@ type Db struct {
 }
 
 func NewDb(filename string) (*Db, error) {
-	db, err := sqlx.Open("sqlite3", "./data.db?_txlock=IMMEDIATE&_journal_mode=WAL")
+	db, err := sqlx.Open("sqlite3", filename+"?_txlock=IMMEDIATE&_journal_mode=WAL")
 	if err != nil {
 		return nil, fmt.Errorf("NewDb: %w", err)
 	}
