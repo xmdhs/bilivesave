@@ -63,8 +63,7 @@ func NewDb(filename string) (*Db, error) {
 		gift_price INT NOT NULL,
 		gift_id INT NOT NULL,
 		action TEXT NOT NULL,
-		time INT NOT NULL,
-		num INT NOT NULL
+		time INT NOT NULL
 	);
 	CREATE TABLE IF NOT EXISTS sc(
 		sc_id INTEGER PRIMARY KEY AUTOINCREMENT,
