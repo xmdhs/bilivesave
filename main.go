@@ -159,7 +159,6 @@ func handle(ctx context.Context, msg live.Msg, db *sql.Db) {
 			GiftID:    g.GiftID,
 			Action:    g.Action,
 			Time:      g.Timestamp,
-			Num:       g.Num,
 		}
 		err = db.InsertGift(ctx, &gift)
 		if err != nil {
@@ -250,7 +249,6 @@ func handle(ctx context.Context, msg live.Msg, db *sql.Db) {
 			GiftID:    c.GiftID,
 			Action:    c.Action,
 			Time:      time.Now().Unix(),
-			Num:       c.TotalNum,
 		}
 		err = db.InsertGift(ctx, &gift)
 		if err != nil {

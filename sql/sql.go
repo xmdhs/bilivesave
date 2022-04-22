@@ -126,7 +126,7 @@ func (db *Db) InsertHot(ctx context.Context, hot, watched int64) error {
 }
 
 func (db *Db) InsertGift(ctx context.Context, gift *Gift) error {
-	err := insert(ctx, gift, db, `INSERT INTO gift ("uname", "uid", "gift_name", "gift_num", "gift_price", "time", "num", "action", "gift_id") VALUES (:uname, :uid, :gift_name, :gift_num, :gift_price, :time, :num, :action, :gift_id);`)
+	err := insert(ctx, gift, db, `INSERT INTO gift ("uname", "uid", "gift_name", "gift_num", "gift_price", "time", "action", "gift_id") VALUES (:uname, :uid, :gift_name, :gift_num, :gift_price, :time, :action, :gift_id);`)
 	if err != nil {
 		return fmt.Errorf("db.InsertHot: %w", err)
 	}

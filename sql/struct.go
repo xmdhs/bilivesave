@@ -40,7 +40,6 @@ type Gift struct {
 	Action    string `db:"action" json:"action"`
 	GiftPrice int    `db:"gift_price" json:"gift_price"`
 	Time      int64  `db:"time" json:"time"`
-	Num       int    `db:"num" json:"num"`
 }
 
 type Sc struct {
