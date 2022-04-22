@@ -82,6 +82,17 @@ func NewDb(filename string) (*Db, error) {
 		id INT NOT NULL,
 		time INT NOT NULL
 	);
+	CREATE TABLE IF NOT EXISTS viewer(
+		viewer_id INTEGER PRIMARY KEY AUTOINCREMENT,
+		UID INT NOT NULL,
+		Uname TEXT NOT NULL,
+		time INT NOT NULL,
+		Score INT NOT NULL,
+		Dmscore INT NOT NULL,
+		MedalLevel INT NOT NULL,
+		MedalName TEXT NOT NULL,
+		TargetId INT NOT NULL,
+	);
 	`)
 	if err != nil {
 		return nil, fmt.Errorf("NewDb: %w", err)
@@ -135,6 +146,14 @@ func (db *Db) InsertDelSC(ctx context.Context, id int64) error {
 	err := insert(ctx, map[string]interface{}{"id": id, "time": time.Now().Unix()}, db, `INSERT INTO delsc ("id", "time") VALUES (:id, :time);`)
 	if err != nil {
 		return fmt.Errorf("db.InsertHot: %w", err)
+	}
+	return nil
+}
+
+func (db *Db) InsertViewer(ctx context.Context, viewer *Viewer) error {
+	err := insert(ctx, viewer, db, `INSERT INTO viewer ("UID", "Uname", "time", "Score", "Dmscore", "MedalLevel", "MedalName", "TargetId") VALUES (:UID, :Uname, :time, :Score, :Dmscore, :MedalLevel, :MedalName, :TargetId);`)
+	if err != nil {
+		return fmt.Errorf("db.InsertViewer: %w", err)
 	}
 	return nil
 }

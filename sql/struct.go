@@ -54,3 +54,15 @@ type Sc struct {
 	Message   string `db:"message" json:"message"`
 	Price     int    `db:"price" json:"price"`
 }
+
+type Viewer struct {
+	ViewerId   int64  `db:"viewer_id" json:"viewer_id"`
+	Uid        int64  `db:"uid" json:"uid"`
+	Uname      string `db:"uname" json:"uname"`
+	Time       int64  `db:"time" json:"time"`
+	Score      int64  `db:"score" json:"score"`
+	Dmscore    int    `db:"dmscore" json:"dmscore"`
+	Medallevel int64  `db:"medallevel" json:"medallevel"`
+	Medalname  string `db:"medalname" json:"medalname"`
+	Targetid   int64  `db:"targetid" json:"targetid"`
+}

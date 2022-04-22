@@ -214,6 +214,25 @@ func handle(ctx context.Context, msg live.Msg, db *sql.Db) {
 		if err != nil {
 			log.Println(err)
 		}
+	case *live.MsgInteractWord:
+		w, err := msg.Parse()
+		if err != nil {
+			log.Println(err)
+		}
+		v := sql.Viewer{
+			Uid:        w.UID,
+			Uname:      w.Uname,
+			Time:       w.Timestamp,
+			Score:      w.Score,
+			Dmscore:    w.Dmscore,
+			Medallevel: int64(w.FansMedal.MedalLevel),
+			Medalname:  w.FansMedal.MedalName,
+			Targetid:   int64(w.FansMedal.TargetId),
+		}
+		err = db.InsertViewer(ctx, &v)
+		if err != nil {
+			log.Println(err)
+		}
 	// General 表示live未实现的CMD命令，请自行处理raw数据。也可以提issue更新这个CMD
 	case *live.MsgGeneral:
 		logger.Println("unknown msg type|raw:", string(msg.Raw()))
