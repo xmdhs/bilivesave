@@ -91,7 +91,7 @@ func NewDb(filename string) (*Db, error) {
 		Dmscore INT NOT NULL,
 		MedalLevel INT NOT NULL,
 		MedalName TEXT NOT NULL,
-		TargetId INT NOT NULL,
+		TargetId INT NOT NULL
 	);
 	`)
 	if err != nil {
@@ -151,7 +151,7 @@ func (db *Db) InsertDelSC(ctx context.Context, id int64) error {
 }
 
 func (db *Db) InsertViewer(ctx context.Context, viewer *Viewer) error {
-	err := insert(ctx, viewer, db, `INSERT INTO viewer ("UID", "Uname", "time", "Score", "Dmscore", "MedalLevel", "MedalName", "TargetId") VALUES (:UID, :Uname, :time, :Score, :Dmscore, :MedalLevel, :MedalName, :TargetId);`)
+	err := insert(ctx, viewer, db, `INSERT INTO viewer ("UID", "Uname", "time", "Score", "Dmscore", "MedalLevel", "MedalName", "TargetId") VALUES (:uid, :uname, :time, :score, :dmscore, :medallevel, :medalname, :targetid);`)
 	if err != nil {
 		return fmt.Errorf("db.InsertViewer: %w", err)
 	}

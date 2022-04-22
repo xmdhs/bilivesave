@@ -223,7 +223,7 @@ func handle(ctx context.Context, msg live.Msg, db *sql.Db) {
 			Uid:        w.UID,
 			Uname:      w.Uname,
 			Time:       w.Timestamp,
-			Score:      w.Score,
+			Score:      int64(w.FansMedal.Score),
 			Dmscore:    w.Dmscore,
 			Medallevel: int64(w.FansMedal.MedalLevel),
 			Medalname:  w.FansMedal.MedalName,
