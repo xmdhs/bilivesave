@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"flag"
 	"log"
 	"net/http"
@@ -152,7 +153,6 @@ func handle(ctx context.Context, msg live.Msg, db *sql.Db) {
 		gift := sql.Gift{
 			Uname:     g.Uname,
 			Uid:       g.UID,
-			Rnd:       g.Rnd,
 			GiftName:  g.GiftName,
 			GiftNum:   g.Num,
 			GiftPrice: g.Price,
@@ -232,6 +232,30 @@ func handle(ctx context.Context, msg live.Msg, db *sql.Db) {
 		err = db.InsertViewer(ctx, &v)
 		if err != nil {
 			log.Println(err)
+		}
+	case *live.MsgComboSend:
+		c := comboSend{}
+		err := json.Unmarshal(getData(msg.Raw()), &c)
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		logger.Printf("%s: %s %d个%s\n", c.Action, c.Uname, c.TotalNum, c.GiftName)
+		gift := sql.Gift{
+			Uname:     c.Uname,
+			Uid:       c.UID,
+			GiftName:  c.GiftName,
+			GiftNum:   c.TotalNum,
+			GiftPrice: c.ComboTotalCoin / c.ComboNum,
+			GiftID:    c.GiftID,
+			Action:    c.Action,
+			Time:      time.Now().Unix(),
+			Num:       c.TotalNum,
+		}
+		err = db.InsertGift(ctx, &gift)
+		if err != nil {
+			log.Println(err)
+			return
 		}
 	// General 表示live未实现的CMD命令，请自行处理raw数据。也可以提issue更新这个CMD
 	case *live.MsgGeneral:

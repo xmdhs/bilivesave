@@ -34,7 +34,6 @@ type Gift struct {
 	Id        int64  `db:"id" json:"id"`
 	Uname     string `db:"uname" json:"uname"`
 	Uid       int64  `db:"uid" json:"uid"`
-	Rnd       string `db:"rnd" json:"rnd"`
 	GiftName  string `db:"gift_name" json:"gift_name"`
 	GiftNum   int    `db:"gift_num" json:"gift_num"`
 	GiftID    int64  `db:"gift_id" json:"gift_id"`

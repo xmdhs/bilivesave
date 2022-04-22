@@ -58,7 +58,6 @@ func NewDb(filename string) (*Db, error) {
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		uname TEXT NOT NULL,
 		uid INT NOT NULL,
-		rnd TEXT NOT NULL,
 		gift_name TEXT NOT NULL,
 		gift_num INT NOT NULL,
 		gift_price INT NOT NULL,
@@ -127,7 +126,7 @@ func (db *Db) InsertHot(ctx context.Context, hot, watched int64) error {
 }
 
 func (db *Db) InsertGift(ctx context.Context, gift *Gift) error {
-	err := insert(ctx, gift, db, `INSERT INTO gift ("uname", "uid", "rnd", "gift_name", "gift_num", "gift_price", "time", "num", "action", "gift_id") VALUES (:uname, :uid, :rnd, :gift_name, :gift_num, :gift_price, :time, :num, :action, :gift_id);`)
+	err := insert(ctx, gift, db, `INSERT INTO gift ("uname", "uid", "gift_name", "gift_num", "gift_price", "time", "num", "action", "gift_id") VALUES (:uname, :uid, :gift_name, :gift_num, :gift_price, :time, :num, :action, :gift_id);`)
 	if err != nil {
 		return fmt.Errorf("db.InsertHot: %w", err)
 	}
