@@ -240,7 +240,7 @@ func handle(ctx context.Context, msg live.Msg, db *sql.Db) {
 			log.Println(err)
 			return
 		}
-		logger.Printf("%s: %s %d个%s\n", c.Action, c.Uname, c.TotalNum, c.GiftName)
+		logger.Printf("连击 %s: %s %d个%s\n", c.Action, c.Uname, c.TotalNum, c.GiftName)
 		gift := sql.Gift{
 			Uname:     c.Uname,
 			Uid:       c.UID,
