@@ -52,17 +52,19 @@ func main() {
 }
 
 func do(ctx context.Context, roomID int64, db *sql.Db) {
+	ctx, stop := context.WithCancel(ctx)
+	defer stop()
+
 	l := live.NewLive(true, 30*time.Second, 50, func(err error) {
 		log.Println("panic:", err)
+		stop()
 	})
 
 	if err := l.Conn(websocket.DefaultDialer, live.WsDefaultHost); err != nil {
-		log.Fatal(err)
+		log.Println(err)
+		stop()
 		return
 	}
-
-	ctx, stop := context.WithCancel(ctx)
-	defer stop()
 
 	go func() {
 		if err := l.Enter(ctx, roomID, "", 12345678); err != nil {
@@ -76,7 +78,7 @@ func do(ctx context.Context, roomID int64, db *sql.Db) {
 }
 
 func rev(ctx context.Context, l *live.Live, db *sql.Db) {
-	ch := make(chan struct{}, runtime.NumCPU())
+	ch := make(chan struct{}, runtime.NumCPU()+2)
 	for {
 		select {
 		case tp := <-l.Rev:
