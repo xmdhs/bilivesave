@@ -67,9 +67,9 @@ func do(ctx context.Context, roomID int64, db *sql.Db) {
 	}
 
 	go func() {
+		defer stop()
 		if err := l.Enter(ctx, roomID, "", 12345678); err != nil {
 			log.Println(err)
-			stop()
 			return
 		}
 	}()
