@@ -20,4 +20,4 @@ require (
 	google.golang.org/protobuf v1.27.1 // indirect
 )
 
-replace github.com/iyear/biligo-live v0.1.2 => github.com/xmdhs/biligo-live v0.1.3-0.20220420171129-46040e65268b
+replace github.com/iyear/biligo-live v0.1.2 => github.com/xmdhs/biligo-live v0.1.3-0.20220515141508-e5db489f66b1
