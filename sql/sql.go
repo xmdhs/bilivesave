@@ -127,7 +127,7 @@ func (db *Db) InsertHot(ctx context.Context, hot, watched int64) error {
 func (db *Db) InsertGift(ctx context.Context, gift *Gift) error {
 	err := insert(ctx, gift, db, `INSERT INTO gift ("uname", "uid", "gift_name", "gift_num", "gift_price", "time", "action", "gift_id") VALUES (:uname, :uid, :gift_name, :gift_num, :gift_price, :time, :action, :gift_id);`)
 	if err != nil {
-		return fmt.Errorf("db.InsertHot: %w", err)
+		return fmt.Errorf("db.InsertGift: %w", err)
 	}
 	return nil
 }
@@ -135,7 +135,7 @@ func (db *Db) InsertGift(ctx context.Context, gift *Gift) error {
 func (db *Db) InsertSC(ctx context.Context, sc *Sc) error {
 	err := insert(ctx, sc, db, `INSERT INTO sc ("id", "uname", "uid", "time", "start_time", "message", "price") VALUES (:id, :uname, :uid, :time, :start_time, :message, :price);`)
 	if err != nil {
-		return fmt.Errorf("db.InsertHot: %w", err)
+		return fmt.Errorf("db.InsertSC: %w", err)
 	}
 	return nil
 }
@@ -143,7 +143,7 @@ func (db *Db) InsertSC(ctx context.Context, sc *Sc) error {
 func (db *Db) InsertDelSC(ctx context.Context, id int64) error {
 	err := insert(ctx, map[string]interface{}{"id": id, "time": time.Now().Unix()}, db, `INSERT INTO delsc ("id", "time") VALUES (:id, :time);`)
 	if err != nil {
-		return fmt.Errorf("db.InsertHot: %w", err)
+		return fmt.Errorf("db.InsertDelSC: %w", err)
 	}
 	return nil
 }
